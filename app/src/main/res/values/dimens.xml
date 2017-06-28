@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Misc -->
+    <dimen name="gutter_half">10dp</dimen>
+
+    <!-- Recipe List Card Details -->
+    <dimen name="material_card_elevation">2dp</dimen>
+    <dimen name="iv_layout_height">200dp</dimen>
+    <dimen name="tv_margin_top">50dp</dimen>
+    <dimen name="card_margin_bottom">10dp</dimen>
+    <dimen name="tv_text_size">20sp</dimen>
 
     <!-- Recipe Step Details -->
 </resources>

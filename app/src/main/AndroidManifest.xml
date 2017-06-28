@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.learnwithme.buildapps.bakingapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".BakingApp"
         android:allowBackup="true"
         android:icon="@drawable/recipe_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ui.recipelist.RecipeListActivity">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:launchMode="singleTop"
+            android:name=".ui.recipelist.activity.RecipeListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
