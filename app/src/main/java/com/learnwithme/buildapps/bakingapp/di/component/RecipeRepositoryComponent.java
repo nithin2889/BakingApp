@@ -1,8 +1,10 @@
-package com.learnwithme.buildapps.bakingapp.data;
+package com.learnwithme.buildapps.bakingapp.di.component;
 
 import com.learnwithme.buildapps.bakingapp.BakingAppModule;
+import com.learnwithme.buildapps.bakingapp.data.DataRepository;
 import com.learnwithme.buildapps.bakingapp.data.source.local.db.DbModule;
 import com.learnwithme.buildapps.bakingapp.data.source.local.preferences.PreferenceModule;
+import com.learnwithme.buildapps.bakingapp.di.module.RecipeRepositoryModule;
 
 import javax.inject.Singleton;
 

@@ -1,5 +1,6 @@
-package com.learnwithme.buildapps.bakingapp.data;
+package com.learnwithme.buildapps.bakingapp.di.module;
 
+import com.learnwithme.buildapps.bakingapp.data.RecipeDataManager;
 import com.learnwithme.buildapps.bakingapp.data.source.local.Local;
 import com.learnwithme.buildapps.bakingapp.data.source.local.RecipeLocalDataSource;
 import com.learnwithme.buildapps.bakingapp.data.source.remote.RecipeRemoteDataSource;

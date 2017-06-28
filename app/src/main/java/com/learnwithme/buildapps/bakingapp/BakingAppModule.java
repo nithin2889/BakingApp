@@ -16,7 +16,7 @@ import dagger.Provides;
  */
 @Module
 public class BakingAppModule {
-    private Context context;
+    private final Context context;
 
     public BakingAppModule(Context context) {
         this.context = context;
@@ -31,6 +31,6 @@ public class BakingAppModule {
     @Provides
     @Singleton
     RecipeService provideRecipeService() {
-        return ServiceClientFactory.createFrom(RecipeService.class, BuildConfig.ENDPOINT);
+        return ServiceClientFactory.createFrom(RecipeService.class, RecipeService.ENDPOINT);
     }
 }
