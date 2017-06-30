@@ -35,11 +35,8 @@ public class DbUtils {
         cv.put(IngredientsEntry.COLUMN_RECIPE_ID, recipeId);
         cv.put(IngredientsEntry.COLUMN_QUANTITY, ingredients.quantity());
         cv.put(IngredientsEntry.COLUMN_MEASURE, ingredients.measure());
-<<<<<<< HEAD
         cv.put(IngredientsEntry.COLUMN_INGREDIENT, ingredients.ingredient());
-=======
-        cv.put(IngredientsEntry.COLUMN_INGREDIENT, ingredients.ingredient()); 
->>>>>>> origin/master
+        cv.put(IngredientsEntry.COLUMN_INGREDIENT, ingredients.ingredient());
 
         return cv;
     }
@@ -161,8 +158,4 @@ public class DbUtils {
         }
         return recipesList;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/master
