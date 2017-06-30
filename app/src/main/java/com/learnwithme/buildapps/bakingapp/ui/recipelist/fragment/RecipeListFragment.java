@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.learnwithme.buildapps.bakingapp.R;
 import com.learnwithme.buildapps.bakingapp.data.model.Recipe;
+import com.learnwithme.buildapps.bakingapp.ui.recipedetail.activity.RecipeDetailsActivity;
 import com.learnwithme.buildapps.bakingapp.ui.recipelist.contract.RecipeListAdapter;
 import com.learnwithme.buildapps.bakingapp.ui.recipelist.contract.RecipeListContract;
 
@@ -122,7 +123,7 @@ public class RecipeListFragment extends Fragment
 
     @Override
     public void displayRecipeDetails(int recipeId) {
-
+        startActivity(RecipeDetailsActivity.prepareIntent(getContext(), recipeId));
     }
 
     private void setViewVisibility(View view, boolean visible) {
