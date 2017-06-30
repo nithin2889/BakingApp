@@ -3,12 +3,19 @@
     <!-- Misc -->
     <dimen name="gutter_half">10dp</dimen>
 
-    <!-- Recipe List Card Details -->
+    <!-- Recipe List -->
     <dimen name="material_card_elevation">2dp</dimen>
     <dimen name="iv_layout_height">200dp</dimen>
     <dimen name="tv_margin_top">50dp</dimen>
     <dimen name="card_margin_bottom">10dp</dimen>
     <dimen name="tv_text_size">20sp</dimen>
 
-    <!-- Recipe Step Details -->
+    <!-- Recipe Details -->
+    <dimen name="material_card_edge_margin">8dp</dimen>
+    <dimen name="material_card_elevation_resting">2dp</dimen>
+    <dimen name="material_card_corner_radius">5dp</dimen>
+    <dimen name="material_card_title_block_padding">24dp</dimen>
+    <dimen name="material_card_supporting_text_size">14sp</dimen>
+    <dimen name="material_list_text_margin_end">8dp</dimen>
+    <dimen name="recipe_step_image_height">150dp</dimen>
 </resources>

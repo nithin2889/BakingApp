@@ -14,12 +14,28 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:launchMode="singleTop"
-            android:name=".ui.recipelist.activity.RecipeListActivity">
+            android:name=".ui.recipelist.activity.RecipeListActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.recipedetail.activity.RecipeDetailsActivity"
+            android:parentActivityName=".ui.recipelist.activity.RecipeListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.recipelist.activity.RecipeListActivity"/>
+        </activity>
+
+        <activity
+            android:label="@string/step_activity_title"
+            android:name=".ui.recipestep.activity.RecipeStepActivity"
+            android:parentActivityName=".ui.recipedetail.activity.RecipeDetailsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.recipedetail.activity.RecipeDetailsActivity"/>
         </activity>
     </application>
 </manifest>

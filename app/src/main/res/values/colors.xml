@@ -9,4 +9,7 @@
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorRedAccent700">#FFD50000</color>
+    <color name="colorYellowAccent700">#FFFFD600</color>
+    <color name="colorMaterialAmber900">#FFFF6F00</color>
+    <color name="colorMaterialGrey500">#FF9E9E9E</color>
 </resources>

@@ -8,7 +8,7 @@
     <string name="recipe_list_connection_error">Recipe server is not available! Please try again later.</string>
 
     <!-- Recipe Details -->
-    <string name="recipe_details_ingredients_header"><b>Ingredients list:</b></string>
+    <string name="recipe_details_ingredients_header"><b>Ingredients:</b></string>
     <string name="recipe_details_ingredient_line" translatable="false">
         <xliff:g id="bullet">\u2022</xliff:g> <xliff:g id="name">%s</xliff:g>
         (<xliff:g id="quantity">%s</xliff:g> <xliff:g id="measure">%s</xliff:g>)

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorMaterialGrey500"
+    android:orientation="vertical"
+    app:layout_editor_absoluteX="0dp"
+    app:layout_editor_absoluteY="80dp">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/recipe_step_desc_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/material_card_edge_margin"
+        android:layout_marginRight="@dimen/material_card_edge_margin"
+        android:layout_marginBottom="@dimen/material_card_edge_margin"
+        android:layout_marginTop="@dimen/material_card_edge_margin"
+        android:elevation="@dimen/material_card_elevation_resting"
+        app:cardBackgroundColor="@color/colorWhite"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="lollipop">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/recipe_step_image"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/recipe_step_image_height"
+                android:scaleType="centerCrop"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/cheesecake" />
+
+            <TextView
+                android:id="@+id/recipe_step_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/material_card_title_block_large_padding_bottom"
+                android:paddingEnd="@dimen/material_card_title_block_padding_horizontal"
+                android:paddingStart="@dimen/material_card_title_block_padding_horizontal"
+                android:paddingTop="@dimen/material_card_title_block_large_padding_top"
+                android:textSize="@dimen/material_card_supporting_text_text_size"
+                tools:text="Step description" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+        android:id="@+id/recipe_step_video"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/material_card_edge_margin"
+        android:layout_marginRight="@dimen/material_card_edge_margin"
+        android:layout_marginTop="@dimen/material_card_edge_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_step_desc_card"/>
+
+</android.support.constraint.ConstraintLayout>

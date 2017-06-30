@@ -130,4 +130,5 @@ dependencies {
     compile glide
     compile materialValues
     compile exoPlayer
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
