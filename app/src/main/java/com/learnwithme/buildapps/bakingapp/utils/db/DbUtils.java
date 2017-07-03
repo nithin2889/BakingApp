@@ -36,7 +36,6 @@ public class DbUtils {
         cv.put(IngredientsEntry.COLUMN_QUANTITY, ingredients.quantity());
         cv.put(IngredientsEntry.COLUMN_MEASURE, ingredients.measure());
         cv.put(IngredientsEntry.COLUMN_INGREDIENT, ingredients.ingredient());
-        cv.put(IngredientsEntry.COLUMN_INGREDIENT, ingredients.ingredient());
 
         return cv;
     }

@@ -19,7 +19,7 @@
         android:layout_marginBottom="@dimen/material_card_edge_margin"
         android:layout_marginTop="@dimen/material_card_edge_margin"
         android:elevation="@dimen/material_card_elevation_resting"
-        app:cardBackgroundColor="@color/colorWhite"
+        app:cardBackgroundColor="@color/colorPrimaryLight"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"

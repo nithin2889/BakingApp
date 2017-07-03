@@ -18,6 +18,7 @@ public class TextViewUtils {
         int end = start + styledText.length();
         sb.setSpan(style, start, end, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         textView.setText(sb);
+    }
 
         /*final SpannableStringBuilder sbs = new SpannableStringBuilder(fullText);
         // Span to make text bold
@@ -30,5 +31,4 @@ public class TextViewUtils {
         sbs.setSpan(iss, 4, 6, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 
         textView.setText(sbs);*/
-    }
 }

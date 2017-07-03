@@ -21,7 +21,7 @@ ext {
     butterKnifeVersion = "8.6.0"
     constraintLayoutVersion = "1.0.2"
     daggerVersion = "2.11"
-    exoPlayerVersion = "r2.4.1"
+    exoPlayerVersion = "r2.4.3"
     glideVersion = "3.7.0"
     gsonVersion = "2.8.1"
     leakCanaryVersion = "1.5.1"

@@ -20,6 +20,7 @@ import com.learnwithme.buildapps.bakingapp.data.model.Step;
 import com.learnwithme.buildapps.bakingapp.ui.recipedetail.activity.RecipeDetailsActivity;
 import com.learnwithme.buildapps.bakingapp.ui.recipedetail.contract.RecipeDetailsAdapter;
 import com.learnwithme.buildapps.bakingapp.ui.recipedetail.contract.RecipeDetailsContract;
+import com.learnwithme.buildapps.bakingapp.ui.recipestep.activity.RecipeStepActivity;
 import com.learnwithme.buildapps.bakingapp.utils.string.StringUtils;
 import com.learnwithme.buildapps.bakingapp.utils.textviewutils.TextViewUtils;
 
@@ -159,6 +160,8 @@ public class RecipeDetailsFragment extends Fragment
     public void displayStepDetails(int stepId) {
         if(twoPaneScreenMode) {
             mRecipeDetailsPresenter.loadStepData(stepId);
+        } else {
+            startActivity(RecipeStepActivity.prepareIntent(getContext(), mRecipeId, stepId));
         }
     }
 
