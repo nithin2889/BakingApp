@@ -1,5 +1,6 @@
 package com.learnwithme.buildapps.bakingapp.ui.recipelist.contract;
 
+import com.learnwithme.buildapps.bakingapp.data.idlingresource.RecipeIdlingResource;
 import com.learnwithme.buildapps.bakingapp.data.model.Recipe;
 import com.learnwithme.buildapps.bakingapp.ui.base.BasePresenter;
 import com.learnwithme.buildapps.bakingapp.ui.base.BaseView;
@@ -24,7 +25,7 @@ public interface RecipeListContract {
     }
 
     interface Presenter extends BasePresenter {
-        void loadRecipesFromRepo(boolean isSyncForced);
+        void loadRecipesFromRepo(boolean isSyncForced, RecipeIdlingResource resource);
 
         void loadRecipeDetails(int recipeId);
     }

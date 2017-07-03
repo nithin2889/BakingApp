@@ -18,6 +18,7 @@
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -26,16 +27,29 @@
             android:parentActivityName=".ui.recipelist.activity.RecipeListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.recipelist.activity.RecipeListActivity"/>
+                android:value=".ui.recipelist.activity.RecipeListActivity" />
         </activity>
-
         <activity
-            android:label="@string/step_activity_title"
             android:name=".ui.recipestep.activity.RecipeStepActivity"
+            android:label="@string/step_activity_title"
             android:parentActivityName=".ui.recipedetail.activity.RecipeDetailsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.recipedetail.activity.RecipeDetailsActivity"/>
+                android:value=".ui.recipedetail.activity.RecipeDetailsActivity" />
+        </activity>
+        <receiver android:name=".ui.widget.WidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_ingredients_info"/>
+        </receiver>
+        <activity android:name=".ui.widget.WidgetConfigActivity">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+            </intent-filter>
         </activity>
     </application>
 </manifest>

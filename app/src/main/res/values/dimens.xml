@@ -18,4 +18,12 @@
     <dimen name="material_card_supporting_text_size">14sp</dimen>
     <dimen name="material_list_text_margin_end">8dp</dimen>
     <dimen name="recipe_step_image_height">150dp</dimen>
+
+    <!-- Widgets -->
+    <!--Widget-->
+    <dimen name="widget_default_height">180dp</dimen>
+    <dimen name="widget_default_width">250dp</dimen>
+    <dimen name="widget_default_resize_width">180dp</dimen>
+    <dimen name="widget_default_resize_height">110dp</dimen>
+    <dimen name="widget_padding">4dp</dimen>
 </resources>

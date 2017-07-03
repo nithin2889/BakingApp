@@ -1,6 +1,7 @@
 package com.learnwithme.buildapps.bakingapp.ui.recipelist.mvp;
 
 import com.learnwithme.buildapps.bakingapp.data.DataRepository;
+import com.learnwithme.buildapps.bakingapp.data.idlingresource.RecipeIdlingResource;
 import com.learnwithme.buildapps.bakingapp.ui.recipelist.contract.RecipeListContract;
 import com.learnwithme.buildapps.bakingapp.ui.recipelist.contract.RecipeListContract.View;
 
@@ -35,7 +36,7 @@ public class RecipeListPresenter implements RecipeListContract.Presenter {
 
     @Override
     public void subscribe() {
-        loadRecipesFromRepo(false);
+        loadRecipesFromRepo(false, null);
     }
 
     @Override
@@ -44,7 +45,7 @@ public class RecipeListPresenter implements RecipeListContract.Presenter {
     }
 
     @Override
-    public void loadRecipesFromRepo(boolean isSyncForced) {
+    public void loadRecipesFromRepo(boolean isSyncForced, RecipeIdlingResource resource) {
         if (isSyncForced) {
             mDataRepository.markRepoAsSynced(false);
         }
