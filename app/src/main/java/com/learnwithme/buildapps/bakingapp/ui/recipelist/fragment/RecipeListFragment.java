@@ -1,6 +1,7 @@
 package com.learnwithme.buildapps.bakingapp.ui.recipelist.fragment;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -26,31 +27,38 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-/**
- * Created by Nithin on 27/06/2017.
- */
-
 public class RecipeListFragment extends Fragment
         implements RecipeListContract.View {
-
+    private static final String BUNDLE_RECYCLER_LAYOUT = "BUNDLE_RECYCLER_LAYOUT";
+    private static final String BUNDLE_RECYCLER_RECIPE_DATA = "BUNDLE_RECYCLER_RECIPE_DATA";
     @BindView(R.id.recipe_list_recycler_view)
     RecyclerView mRecipeListRecyclerView;
     @BindView(R.id.recipe_list_progress_bar)
     ProgressBar mRecipeListProgressBar;
-
     @BindInt(R.integer.grid_column_count)
     int mGridColumnCount;
     @BindString(R.string.recipe_list_sync_completed)
     String mRecipeListSyncCompleted;
     @BindString(R.string.recipe_list_connection_error)
     String mRecipeListConnectionError;
-
+    GridLayoutManager gridLayoutManager;
+    ArrayList<Recipe> mRecipeList;
     Unbinder unbinder;
-
     private RecipeListContract.Presenter mRecipeListPresenter;
     private RecipeListAdapter mRecipeListAdapter;
 
     public RecipeListFragment() { }
+
+    @Override
+    public void onSaveInstanceState(Bundle bundle) {
+        super.onSaveInstanceState(bundle);
+        bundle.putParcelable(BUNDLE_RECYCLER_LAYOUT, mRecipeListRecyclerView.getLayoutManager().onSaveInstanceState());
+        // bundle.putParcelableArrayList(BUNDLE_RECYCLER_RECIPE_DATA, mRecipeList);
+    }
+
+    public static RecipeListFragment newInstance() {
+        return new RecipeListFragment();
+    }
 
     @Nullable
     @Override
@@ -59,24 +67,29 @@ public class RecipeListFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_recipe_list, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-        mRecipeListAdapter = new RecipeListAdapter(
-                new ArrayList<>(0),
-                recipeId -> mRecipeListPresenter.loadRecipeDetails(recipeId)
-        );
+        // Changes regarding the saveInstanceState on device rotation starts
+        /*if(savedInstanceState != null) {
+            Parcelable savedRecyclerViewState = savedInstanceState.getParcelable(BUNDLE_RECYCLER_LAYOUT);
+            mRecipeListRecyclerView.getLayoutManager().onRestoreInstanceState(savedRecyclerViewState);
+            mRecipeList = savedInstanceState.getParcelableArrayList(BUNDLE_RECYCLER_RECIPE_DATA);
+            mRecipeListAdapter.refreshRecipes(mRecipeList);
+        } else {
+            mRecipeList = getArguments().getParcelableArrayList(BUNDLE_RECYCLER_RECIPE_DATA);
+        }*/
+
+        // List<Ingredients> ingredients = mRecipeList.get(0).ingredients();
+        // Changes regarding the saveInstanceState on device rotation ends
+
+        mRecipeListAdapter = new RecipeListAdapter(getContext(), mRecipeList, recipeId
+                -> mRecipeListPresenter.loadRecipeDetails(recipeId));
         mRecipeListAdapter.setHasStableIds(true);
 
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), mGridColumnCount);
-        mRecipeListRecyclerView.setLayoutManager(layoutManager);
+        gridLayoutManager = new GridLayoutManager(getContext(), mGridColumnCount);
+        mRecipeListRecyclerView.setLayoutManager(gridLayoutManager);
         mRecipeListRecyclerView.setHasFixedSize(true);
         mRecipeListRecyclerView.setAdapter(mRecipeListAdapter);
 
         return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mRecipeListPresenter.subscribe();
     }
 
     @Override
@@ -85,14 +98,42 @@ public class RecipeListFragment extends Fragment
         mRecipeListPresenter.unsubscribe();
     }
 
+    /*
+    @Override
+    public void onSaveInstanceState(Bundle bundle) {
+        super.onSaveInstanceState(bundle);
+        if(bundle != null) {
+            bundle.putParcelable(SAVED_LAYOUT_MANAGER,
+                    mRecipeListRecyclerView
+                        .getLayoutManager()
+                        .onSaveInstanceState());
+            Timber.d("instance state=>", mRecipeListRecyclerView.getLayoutManager().onSaveInstanceState());
+        }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle bundle) {
+        super.onActivityCreated(bundle);
+        if(bundle != null) {
+            savedRecyclerLayoutState = bundle.getParcelable(SAVED_LAYOUT_MANAGER);
+            Timber.d("onViewStateRestored savedRecyclerLayoutState=>",
+                    savedRecyclerLayoutState);
+            mRecipeListRecyclerView
+                    .getLayoutManager()
+                    .onRestoreInstanceState(savedRecyclerLayoutState);
+        }
+    }*/
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mRecipeListPresenter.subscribe();
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-    }
-
-    public static RecipeListFragment newInstance() {
-        return new RecipeListFragment();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.learnwithme.buildapps.bakingapp;
 
+import android.support.test.espresso.Espresso;
+import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
@@ -7,6 +9,8 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.learnwithme.buildapps.bakingapp.ui.recipedetail.activity.RecipeDetailsActivity;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,8 +34,16 @@ public class RecipeDetailsActivityUITest {
     private static final int STEP_WITHOUT_VIDEO = 1;
 
     @Rule
-    public ActivityTestRule<RecipeDetailsActivity> activityActivityTestRule =
+    public ActivityTestRule<RecipeDetailsActivity> activityTestRule =
             new ActivityTestRule<>(RecipeDetailsActivity.class);
+
+    private IdlingResource idlingResource;
+
+    @Before
+    public void registeringIdlingResource() {
+        idlingResource = activityTestRule.getActivity().getIdlingResource();
+        Espresso.registerIdlingResources(idlingResource);
+    }
 
     @Test
     public void clickOnRecyclerViewItem_opensRecipeStepActivity() {
@@ -69,5 +81,12 @@ public class RecipeDetailsActivityUITest {
                         withParent(withParent(withId(R.id.recipe_step_viewpager))),
                         isDisplayed()))
                 .check(doesNotExist());
+    }
+
+    @After
+    public void unregisteringIdlingResource() {
+        if (idlingResource != null) {
+            Espresso.unregisterIdlingResources(idlingResource);
+        }
     }
 }
