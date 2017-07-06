@@ -46,6 +46,7 @@ dependencies {
     def rx = rootProject.ext.rxDependencies
     def dagger = rootProject.ext.daggerDependencies
     def retrofit = rootProject.ext.retrofitDependencies
+    def scrollView = rootProject.ext.observableScrollView
     def okhttp = rootProject.ext.okhttpDependency
     def gson = rootProject.ext.gsonDependency
     def butterKnife = rootProject.ext.butterKnifeDependencies
@@ -124,6 +125,7 @@ dependencies {
     testCompile leakCanary
 
     compile okhttp
+    compile scrollView
     compile gson
     compile sqlBrite
     compile timber

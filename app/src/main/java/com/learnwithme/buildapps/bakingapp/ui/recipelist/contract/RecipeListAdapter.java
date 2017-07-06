@@ -1,14 +1,19 @@
 package com.learnwithme.buildapps.bakingapp.ui.recipelist.contract;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.learnwithme.buildapps.bakingapp.R;
 import com.learnwithme.buildapps.bakingapp.data.model.Recipe;
+import com.learnwithme.buildapps.bakingapp.ui.recipelist.activity.RecipeListActivity;
 
 import java.util.List;
 import java.util.Locale;
@@ -21,12 +26,15 @@ import butterknife.ButterKnife;
  * Created by Nithin on 27/06/2017.
  */
 
-public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.RecipeViewHolder> {
+public class RecipeListAdapter extends
+        RecyclerView.Adapter<RecipeListAdapter.RecipeViewHolder> {
     final OnRecipeListClickListener recipeListClickListener;
     private List<Recipe> recipeList;
+    private Context context;
 
-    public RecipeListAdapter(List<Recipe> recipes, OnRecipeListClickListener listener) {
+    public RecipeListAdapter(Context context, List<Recipe> recipes, OnRecipeListClickListener listener) {
         setRecipes(recipes);
+        this.context = context;
         recipeListClickListener = listener;
     }
 
@@ -70,6 +78,9 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         TextView listRecipeName;
         @BindView(R.id.list_recipe_servings)
         TextView listRecipeServings;
+        // Accessing image view through ButterKnife
+        @BindView(R.id.imageView)
+        ImageView imageView;
         @BindString(R.string.recipe_list_servings_text)
         String recipeListServingsText;
 
@@ -85,12 +96,19 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             currentId = recipe.id();
             String name = recipe.name();
             int servings = recipe.servings();
+            String image = recipe.image();
 
             // Setting data to the text views here
             listRecipeName.setText(name);
             // Giving a custom format to the servings
             listRecipeServings
                     .setText(String.format(Locale.US, recipeListServingsText, servings));
+            // Setting the image from API else setting default image using Glide
+            Glide.with(context)
+                .load(image)
+                .placeholder(R.drawable.brownies)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(imageView);
         }
 
         @Override

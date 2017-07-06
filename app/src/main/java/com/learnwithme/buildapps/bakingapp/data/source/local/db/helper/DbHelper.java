@@ -14,7 +14,7 @@ import com.learnwithme.buildapps.bakingapp.data.source.local.db.contract.StepsCo
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "recipes.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

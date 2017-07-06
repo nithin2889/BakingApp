@@ -2,12 +2,17 @@ package com.learnwithme.buildapps.bakingapp.ui.recipedetail.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.learnwithme.buildapps.bakingapp.BakingApp;
 import com.learnwithme.buildapps.bakingapp.R;
+import com.learnwithme.buildapps.bakingapp.data.idlingresource.RecipeIdlingResource;
 import com.learnwithme.buildapps.bakingapp.di.component.DaggerRecipeDetailsComponent;
 import com.learnwithme.buildapps.bakingapp.di.module.RecipeDetailsPresenterModule;
 import com.learnwithme.buildapps.bakingapp.ui.recipedetail.fragment.RecipeDetailsFragment;
@@ -23,6 +28,9 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
     @Inject
     RecipeDetailsPresenter mRecipeDetailsPresenter;
+
+    @Nullable
+    private RecipeIdlingResource idlingResource;
 
     public static Intent prepareIntent(Context context, int recipeId) {
         Intent intent = new Intent(context, RecipeDetailsActivity.class);
@@ -63,5 +71,14 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         if (supportActionBar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    @VisibleForTesting
+    @NonNull
+    public IdlingResource getIdlingResource() {
+        if (idlingResource == null) {
+            idlingResource = new RecipeIdlingResource();
+        }
+        return idlingResource;
     }
 }

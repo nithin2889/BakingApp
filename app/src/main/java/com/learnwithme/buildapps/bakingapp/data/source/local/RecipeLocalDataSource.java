@@ -1,6 +1,5 @@
 package com.learnwithme.buildapps.bakingapp.data.source.local;
 
-
 import com.learnwithme.buildapps.bakingapp.data.RecipeDataManager;
 import com.learnwithme.buildapps.bakingapp.data.model.Ingredients;
 import com.learnwithme.buildapps.bakingapp.data.model.Recipe;
@@ -37,7 +36,7 @@ public class RecipeLocalDataSource implements RecipeDataManager {
         rx.Observable<List<Recipe>> listObservable = mBriteDatabase
                 .createQuery(RecipeEntry.TABLE_NAME,
                         DbUtils.querySelectAll(RecipeEntry.TABLE_NAME))
-                .mapToOne(DbUtils::recipesFromCursor);
+                .mapToOne((cursor) -> DbUtils.recipesFromCursor(cursor));
 
         return RxJavaInterop.toV2Observable(listObservable);
     }

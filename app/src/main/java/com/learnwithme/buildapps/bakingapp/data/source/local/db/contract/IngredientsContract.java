@@ -26,4 +26,12 @@ public class IngredientsContract {
         + IngredientsEntry.COLUMN_MEASURE + " TEXT NOT NULL, "
         + IngredientsEntry.COLUMN_INGREDIENT + " TEXT NOT NULL"
         + ");";
+
+    public static final String INGREDIENTS_ALTER_1 = "ALTER TABLE "
+            + IngredientsEntry.TABLE_NAME + " ADD COLUMN " + IngredientsEntry.COLUMN_QUANTITY
+            + " REAL NOT NULL;";
+
+    public static final String INGREDIENTS_ALTER_2 = "ALTER TABLE "
+            + IngredientsEntry.TABLE_NAME + " ADD COLUMN " + IngredientsEntry.COLUMN_MEASURE
+            + " TEXT NOT NULL;";
 }

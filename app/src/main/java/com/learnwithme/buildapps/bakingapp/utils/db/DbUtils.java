@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 
 import com.learnwithme.buildapps.bakingapp.data.model.Ingredients;
 import com.learnwithme.buildapps.bakingapp.data.model.Recipe;
+import com.learnwithme.buildapps.bakingapp.data.model.Recipes;
 import com.learnwithme.buildapps.bakingapp.data.model.Step;
 import com.learnwithme.buildapps.bakingapp.data.source.local.db.contract.IngredientsContract.IngredientsEntry;
 import com.learnwithme.buildapps.bakingapp.data.source.local.db.contract.RecipeContract.RecipeEntry;
@@ -13,6 +14,8 @@ import com.learnwithme.buildapps.bakingapp.data.source.local.db.contract.StepsCo
 
 import java.util.ArrayList;
 import java.util.List;
+
+import timber.log.Timber;
 
 /**
  * Created by Nithin on 26/06/2017.
@@ -153,6 +156,7 @@ public class DbUtils {
                         .build();
 
                 recipesList.add(recipe);
+                Timber.d("recipesList=>", recipesList);
             }
         }
         return recipesList;

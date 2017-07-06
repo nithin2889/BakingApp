@@ -53,9 +53,7 @@ public class RecipeListPresenter implements RecipeListContract.Presenter {
 
         Disposable subscription = mDataRepository
             .getRecipes()
-            .doOnSubscribe(disposable -> {
-                mRecipesView.loadProgressBar(true);
-            })
+            .doOnSubscribe(disposable -> mRecipesView.loadProgressBar(true))
             .subscribe(
                 recipesList -> {
                     mRecipesView.showRecipeList(recipesList);

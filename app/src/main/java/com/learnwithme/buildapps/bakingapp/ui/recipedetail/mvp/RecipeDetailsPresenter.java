@@ -99,6 +99,7 @@ public class RecipeDetailsPresenter implements RecipeDetailsContract.Presenter {
         Disposable subscription = mRecipeRepository
             .getRecipeSteps(mRecipeId)
             .flatMap(Observable::fromIterable)
+            .filter(step -> step.id() == stepId)
             .subscribe(
                 // onNext
                 step -> mDetailsView.refreshStepContainerFragment(

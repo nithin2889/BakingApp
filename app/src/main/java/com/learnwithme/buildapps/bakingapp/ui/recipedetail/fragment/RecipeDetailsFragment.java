@@ -21,6 +21,8 @@ import com.learnwithme.buildapps.bakingapp.ui.recipedetail.activity.RecipeDetail
 import com.learnwithme.buildapps.bakingapp.ui.recipedetail.contract.RecipeDetailsAdapter;
 import com.learnwithme.buildapps.bakingapp.ui.recipedetail.contract.RecipeDetailsContract;
 import com.learnwithme.buildapps.bakingapp.ui.recipestep.activity.RecipeStepActivity;
+import com.learnwithme.buildapps.bakingapp.ui.recipestep.fragment.RecipeStepPageFragment;
+import com.learnwithme.buildapps.bakingapp.utils.fragment.FragmentUtils;
 import com.learnwithme.buildapps.bakingapp.utils.string.StringUtils;
 import com.learnwithme.buildapps.bakingapp.utils.textviewutils.TextViewUtils;
 
@@ -79,6 +81,7 @@ public class RecipeDetailsFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_recipe_details, container, false);
         unbinder = ButterKnife.bind(this, view);
 
@@ -167,6 +170,12 @@ public class RecipeDetailsFragment extends Fragment
 
     @Override
     public void refreshStepContainerFragment(String desc, String videoUrl, String imageUrl) {
+        RecipeStepPageFragment fragment =
+                RecipeStepPageFragment.newInstance(desc, videoUrl, imageUrl);
 
+        FragmentUtils.replaceFragment(
+                getChildFragmentManager(),
+                fragment,
+                R.id.recipe_step_container);
     }
 }
