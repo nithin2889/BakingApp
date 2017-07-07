@@ -1,7 +1,5 @@
 package com.learnwithme.buildapps.bakingapp.ui.recipelist.contract;
 
-import android.os.Parcelable;
-
 import com.learnwithme.buildapps.bakingapp.data.idlingresource.RecipeIdlingResource;
 import com.learnwithme.buildapps.bakingapp.data.model.Recipe;
 import com.learnwithme.buildapps.bakingapp.ui.base.BasePresenter;

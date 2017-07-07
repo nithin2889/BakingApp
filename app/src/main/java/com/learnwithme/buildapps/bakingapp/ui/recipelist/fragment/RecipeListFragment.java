@@ -31,6 +31,7 @@ public class RecipeListFragment extends Fragment
         implements RecipeListContract.View {
 
     private static final String KEY_LAYOUT = "KEY_LAYOUT";
+    private static final String POSITION = "POSITION";
 
     @BindView(R.id.recipe_list_recycler_view)
     RecyclerView mRecipeListRecyclerView;
@@ -42,27 +43,34 @@ public class RecipeListFragment extends Fragment
     String mRecipeListSyncCompleted;
     @BindString(R.string.recipe_list_connection_error)
     String mRecipeListConnectionError;
+
     GridLayoutManager gridLayoutManager;
     Unbinder unbinder;
+
     private RecipeListContract.Presenter mRecipeListPresenter;
     private RecipeListAdapter mRecipeListAdapter;
 
     private Parcelable mRecipeListParcelable;
+    private int mScrollPosition = -1;
 
     public RecipeListFragment() { }
 
     @Override
     public void onSaveInstanceState(Bundle bundle) {
         super.onSaveInstanceState(bundle);
+        int scrollPosition = ((GridLayoutManager) mRecipeListRecyclerView.getLayoutManager())
+                .findFirstCompletelyVisibleItemPosition();
         mRecipeListParcelable = gridLayoutManager.onSaveInstanceState();
         bundle.putParcelable(KEY_LAYOUT, mRecipeListParcelable);
+        bundle.putInt(POSITION, scrollPosition);
     }
 
     @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-        if(savedInstanceState != null) {
-            mRecipeListParcelable = savedInstanceState.getParcelable(KEY_LAYOUT);
+    public void onViewStateRestored(@Nullable Bundle bundle) {
+        super.onViewStateRestored(bundle);
+        if(bundle != null) {
+            mRecipeListParcelable = bundle.getParcelable(KEY_LAYOUT);
+            mScrollPosition = bundle.getInt(POSITION);
         }
     }
 
@@ -70,9 +78,10 @@ public class RecipeListFragment extends Fragment
     public void onResume() {
         super.onResume();
         mRecipeListPresenter.subscribe();
-        if(mRecipeListParcelable != null) {
+        // Not needed, the presenter callback works and the view is reset anyway.
+        /*if(mRecipeListParcelable != null) {
             gridLayoutManager.onRestoreInstanceState(mRecipeListParcelable);
-        }
+        }*/
     }
 
     public static RecipeListFragment newInstance() {
@@ -82,7 +91,7 @@ public class RecipeListFragment extends Fragment
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+                             @Nullable Bundle bundle) {
         View view = inflater.inflate(R.layout.fragment_recipe_list, container, false);
         unbinder = ButterKnife.bind(this, view);
 
@@ -126,6 +135,7 @@ public class RecipeListFragment extends Fragment
     public void loadProgressBar(boolean show) {
         setViewVisibility(mRecipeListRecyclerView, !show);
         setViewVisibility(mRecipeListProgressBar, show);
+        mRecipeListRecyclerView.scrollToPosition(mScrollPosition);
     }
 
     @Override

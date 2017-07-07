@@ -12,11 +12,15 @@ import android.view.MenuItem;
 import com.learnwithme.buildapps.bakingapp.BakingApp;
 import com.learnwithme.buildapps.bakingapp.R;
 import com.learnwithme.buildapps.bakingapp.data.idlingresource.RecipeIdlingResource;
+import com.learnwithme.buildapps.bakingapp.data.model.Recipe;
 import com.learnwithme.buildapps.bakingapp.di.component.DaggerRecipeListComponent;
 import com.learnwithme.buildapps.bakingapp.ui.recipelist.fragment.RecipeListFragment;
 import com.learnwithme.buildapps.bakingapp.di.module.RecipeListPresenterModule;
 import com.learnwithme.buildapps.bakingapp.ui.recipelist.mvp.RecipeListPresenter;
 import com.learnwithme.buildapps.bakingapp.utils.fragment.FragmentUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -36,8 +40,8 @@ public class RecipeListActivity extends AppCompatActivity {
     private RecipeIdlingResource idlingResource;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
         setContentView(R.layout.activity_recipe_list);
 
         RecipeListFragment mRecipeListFragment =
